@@ -1,9 +1,17 @@
 "use client";
+import AnimatedShinyText from "@/components/animated-shiny-text";
+import { SearchInput } from "@/components/search-input";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { useTheme } from "next-themes";
-import Image from "next/image";
 import Link from "next/link";
 
 export const HeroSection = () => {
@@ -12,20 +20,11 @@ export const HeroSection = () => {
     <section className="container w-full">
       <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
         <div className="text-center space-y-8">
-          <Badge variant="outline" className="text-sm py-2">
-            <span className="mr-2 text-primary">
-              <Badge>New</Badge>
-            </span>
-            <span> Design is out now! </span>
-          </Badge>
-
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>
-              Experience the
-              <span className="text-transparent px-2 bg-gradient-to-r from-[#D247BF] to-primary bg-clip-text">
-                Shadcn
-              </span>
-              landing page
+              Des prestataires
+              <AnimatedShinyText> sur mesure</AnimatedShinyText>
+              pour vos <span>mariages.</span>
             </h1>
           </div>
 
@@ -34,42 +33,71 @@ export const HeroSection = () => {
             creators. Get access to exclusive resources, tutorials, and support.`}
           </p>
 
-          <div className="space-y-4 md:space-y-0 md:space-x-4">
-            <Button className="w-5/6 md:w-1/4 font-bold group/arrow">
-              Get Started
-              <ArrowRight className="size-5 ml-2 group-hover/arrow:translate-x-1 transition-transform" />
-            </Button>
-
-            <Button
-              asChild
-              variant="secondary"
-              className="w-5/6 md:w-1/4 font-bold"
-            >
-              <Link
-                href="https://github.com/nobruf/shadcn-landing-page.git"
-                target="_blank"
-              >
-                Github respository
-              </Link>
-            </Button>
-          </div>
+          <form id="main-search">
+            <SearchInput
+              placeholder="Quel service recherchez-vous aujourd'hui ?"
+              buttonProps={{
+                size: "lg",
+              }}
+            />
+          </form>
         </div>
 
         <div className="relative group mt-14">
           <div className="absolute top-2 lg:-top-8 left-1/2 transform -translate-x-1/2 w-[90%] mx-auto h-24 lg:h-80 bg-primary/50 rounded-full blur-3xl"></div>
-          <Image
-            width={1200}
-            height={1200}
-            className="w-full md:w-[1200px] mx-auto rounded-lg relative rouded-lg leading-none flex items-center border border-t-2 border-secondary  border-t-primary/30"
-            src={
-              theme === "light"
-                ? "/hero-image-light.jpeg"
-                : "/hero-image-dark.jpeg"
-            }
-            alt="dashboard"
-          />
 
-          <div className="absolute bottom-0 left-0 w-full h-20 md:h-28 bg-gradient-to-b from-background/0 via-background/50 to-background rounded-lg"></div>
+          <Carousel className="w-full">
+            <CarouselContent>
+              <CarouselItem>
+                <div className="p-1 relative">
+                  <div className="absolute inset-1 bg-gradient-to-b from-transparent to-black/80 rounded-lg" />
+
+                  <video autoPlay loop className="rounded-lg">
+                    <source src="https://videos.pexels.com/video-files/6004928/6004928-hd_1920_1080_30fps.mp4" />
+                  </video>
+
+                  <Link href="#" className="absolute bottom-10 right-10">
+                    <Badge className="py-2 px-3 text-sm bg-white/10 backdrop-blur-sm border border-white/20">
+                      <Avatar className="mr-3">
+                        <AvatarImage src="https://i.pravatar.cc/300" />
+                      </Avatar>
+
+                      <div>
+                        <div>Maureen Tueno</div>
+                        <div>Service traiteur</div>
+                      </div>
+                    </Badge>
+                  </Link>
+                </div>
+              </CarouselItem>
+
+              <CarouselItem>
+                <div className="p-1 relative">
+                  <div className="absolute inset-1 bg-gradient-to-b from-black/20 to-black/80 rounded-lg" />
+
+                  <video autoPlay loop className="rounded-lg">
+                    <source src="https://videos.pexels.com/video-files/7722215/7722215-uhd_3840_2160_25fps.mp4" />
+                  </video>
+
+                  <Link href="#" className="absolute bottom-10 right-10">
+                    <Badge className="py-2 px-3 text-sm bg-white/10 backdrop-blur-sm border border-white/20">
+                      <Avatar className="mr-3">
+                        <AvatarImage src="https://i.pravatar.cc/300" />
+                      </Avatar>
+
+                      <div>
+                        <div>Paul-Henry Ngounou</div>
+                        <div>DJ, animation</div>
+                      </div>
+                    </Badge>
+                  </Link>
+                </div>
+              </CarouselItem>
+            </CarouselContent>
+
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
     </section>

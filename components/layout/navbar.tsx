@@ -1,190 +1,193 @@
 "use client";
-import { ChevronsDown, Github, Menu } from "lucide-react";
-import React from "react";
+import { MenuIcon } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../ui/sheet";
-import { Separator } from "../ui/separator";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "../ui/navigation-menu";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import Image from "next/image";
-import { ToggleTheme } from "./toogle-theme";
-
-interface RouteProps {
-  href: string;
-  label: string;
-}
-
-interface FeatureProps {
-  title: string;
-  description: string;
-}
-
-const routeList: RouteProps[] = [
-  {
-    href: "#testimonials",
-    label: "Testimonials",
-  },
-  {
-    href: "#team",
-    label: "Team",
-  },
-  {
-    href: "#contact",
-    label: "Contact",
-  },
-  {
-    href: "#faq",
-    label: "FAQ",
-  },
-];
-
-const featureList: FeatureProps[] = [
-  {
-    title: "Showcase Your Value ",
-    description: "Highlight how your product solves user problems.",
-  },
-  {
-    title: "Build Trust",
-    description:
-      "Leverages social proof elements to establish trust and credibility.",
-  },
-  {
-    title: "Capture Leads",
-    description:
-      "Make your lead capture form visually appealing and strategically.",
-  },
-];
+import { cn } from "@/lib/utils";
+import { SearchInput } from "@/components/search-input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSearchVisible, setIsSearchVisible] = useState(true);
+
+  useEffect(() => {
+    const mainSearchInput = document.getElementById("main-search");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsSearchVisible(true);
+        } else {
+          setIsSearchVisible(false);
+        }
+      });
+    });
+
+    if (mainSearchInput) {
+      observer.observe(mainSearchInput);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <header className="shadow-inner bg-opacity-15 w-[90%] md:w-[70%] lg:w-[75%] lg:max-w-screen-xl top-5 mx-auto sticky border border-secondary z-40 rounded-2xl flex justify-between items-center p-2 bg-card">
-      <Link href="/" className="font-bold text-lg flex items-center">
-        <ChevronsDown className="bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
-        Shadcn
-      </Link>
-      {/* <!-- Mobile --> */}
-      <div className="flex items-center lg:hidden">
-        <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger asChild>
-            <Menu
-              onClick={() => setIsOpen(!isOpen)}
-              className="cursor-pointer lg:hidden"
-            />
-          </SheetTrigger>
+    <div className="bg-neutral-50 sticky top-0 z-50 py-5">
+      <header
+        className={cn(
+          "container mx-auto rounded-2xl flex justify-between items-center"
+        )}
+      >
+        <Link href="/" className="font-bold text-lg flex items-center">
+          <span className="mr-2 text-4xl">🎉</span>
+          My Perfect Event
+        </Link>
 
-          <SheetContent
-            side="left"
-            className="flex flex-col justify-between rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
-          >
-            <div>
-              <SheetHeader className="mb-4 ml-4">
-                <SheetTitle className="flex items-center">
-                  <Link href="/" className="flex items-center">
-                    <ChevronsDown className="bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
-                    Shadcn
-                  </Link>
-                </SheetTitle>
-              </SheetHeader>
+        {/* Mobile */}
+        <div className="flex items-center lg:hidden">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                onClick={() => setIsOpen(!isOpen)}
+                className="lg:hidden"
+              >
+                <MenuIcon />
+              </Button>
+            </SheetTrigger>
 
-              <div className="flex flex-col gap-2">
-                {routeList.map(({ href, label }) => (
-                  <Button
-                    key={href}
-                    onClick={() => setIsOpen(false)}
-                    asChild
-                    variant="ghost"
-                    className="justify-start text-base"
-                  >
-                    <Link href={href}>{label}</Link>
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <SheetFooter className="flex-col sm:flex-col justify-start items-start">
-              <Separator className="mb-2" />
-
-              <ToggleTheme />
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* <!-- Desktop --> */}
-      <NavigationMenu className="hidden lg:block mx-auto">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-card text-base">
-              Features
-            </NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="grid w-[600px] grid-cols-2 gap-5 p-4">
-                <Image
-                  src="https://avatars.githubusercontent.com/u/75042455?v=4"
-                  alt="RadixLogo"
-                  className="h-full w-full rounded-md object-cover"
-                  width={600}
-                  height={600}
-                />
-                <ul className="flex flex-col gap-2">
-                  {featureList.map(({ title, description }) => (
-                    <li
-                      key={title}
-                      className="rounded-md p-3 text-sm hover:bg-muted"
+            <SheetContent
+              side="left"
+              className="rounded-tr-2xl rounded-br-2xl bg-card border-secondary"
+            >
+              <div>
+                <SheetHeader className="mb-4 ml-4">
+                  <SheetTitle className="flex items-center mb-5">
+                    <Link
+                      href="/"
+                      className="font-bold text-lg flex items-center"
                     >
-                      <p className="mb-1 font-semibold leading-none text-foreground">
-                        {title}
-                      </p>
-                      <p className="line-clamp-2 text-muted-foreground">
-                        {description}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+                      <span className="mr-2 text-4xl">🎉</span>
+                      My Perfect Event
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
               </div>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            {routeList.map(({ href, label }) => (
-              <NavigationMenuLink key={href} asChild>
-                <Link href={href} className="text-base px-2">
-                  {label}
-                </Link>
-              </NavigationMenuLink>
-            ))}
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+              <form>
+                <SearchInput
+                  className="py-7"
+                  placeholder="Rechercher un service"
+                  buttonProps={{
+                    className: "",
+                  }}
+                />
+              </form>
 
-      <div className="hidden lg:flex">
-        <ToggleTheme />
+              <nav className="mt-10">
+                <ul className="flex flex-col">
+                  <li>
+                    <Button className="w-full justify-start">
+                      Se connecter
+                    </Button>
+                  </li>
 
-        <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
-          <Link
-            aria-label="View on GitHub"
-            href="https://github.com/nobruf/shadcn-landing-page.git"
-            target="_blank"
-          >
-            <Github className="size-5" />
-          </Link>
-        </Button>
-      </div>
-    </header>
+                  <li>
+                    <Button className="w-full justify-start">
+                      Devenir prestataire
+                    </Button>
+                  </li>
+
+                  <li>
+                    <Accordion
+                      type="single"
+                      collapsible
+                      className="bg-transparent"
+                    >
+                      <AccordionItem
+                        value="categories"
+                        className="bg-transparent border-none"
+                      >
+                        <AccordionTrigger className="text-sm">
+                          Parcourir les catégories
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <ul className="flex flex-col gap-3">
+                            <li>
+                              <Button className="w-full justify-start">
+                                Coiffure
+                              </Button>
+                            </li>
+
+                            <li>
+                              <Button className="w-full justify-start">
+                                Event planning
+                              </Button>
+                            </li>
+
+                            <li>
+                              <Button className="w-full justify-start">
+                                Animation
+                              </Button>
+                            </li>
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </li>
+
+                  <li className="mt-5">
+                    <Button variant="primary" className="w-full h-14">
+                      🎉 S&apos;inscrire
+                    </Button>
+                  </li>
+                </ul>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+
+        {/* Desktop */}
+        {!isSearchVisible && (
+          <form className="hidden lg:block w-1/3">
+            <SearchInput
+              placeholder="Rechercher un service"
+              className="py-5"
+              buttonProps={{
+                size: "lg",
+                className: "right-0",
+              }}
+            />
+          </form>
+        )}
+
+        <div className="hidden lg:flex gap-5">
+          <Button asChild>
+            <Link href="#">Devenir prestataire</Link>
+          </Button>
+
+          <Button variant="secondary" asChild>
+            <Link href="#">Connexion</Link>
+          </Button>
+
+          <Button variant="primary" asChild>
+            <Link href="#">Inscription</Link>
+          </Button>
+        </div>
+      </header>
+    </div>
   );
 };
