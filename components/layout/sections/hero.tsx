@@ -66,8 +66,12 @@ export const HeroSection = () => {
           </p>
         </div>
 
-        <form id="main-search">
+        <form
+          id="main-search"
+          action={`${process.env.NEXT_PUBLIC_APP_URL}/services`}
+        >
           <SearchInput
+            name="search"
             placeholder="Quel service recherchez-vous ?"
             buttonProps={{
               size: "lg",

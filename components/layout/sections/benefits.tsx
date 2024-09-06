@@ -85,8 +85,15 @@ export const BenefitsSection = () => {
         </div>
 
         <div className="w-full h-full flex justify-center lg:justify-start">
-          <Button variant="primary" size="xl" className="mx-auto md:mx-0">
-            Explorer les services <ArrowRightIcon className="ml-2 h-4 w-4" />
+          <Button
+            variant="primary"
+            size="xl"
+            className="mx-auto md:mx-0"
+            asChild
+          >
+            <a href={`${process.env.NEXT_PUBLIC_APP_URL}/services`}>
+              Explorer les services <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </a>
           </Button>
         </div>
       </div>

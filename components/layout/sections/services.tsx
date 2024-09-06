@@ -77,10 +77,10 @@ export const ServicesSection = () => {
       </div>
 
       <Button variant="primary" size="xl" className="mt-20" asChild>
-        <Link href="#">
+        <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
           Devenir prestataire
           <ArrowRightIcon className="ml-2 h-4 w-4" />
-        </Link>
+        </a>
       </Button>
     </section>
   );

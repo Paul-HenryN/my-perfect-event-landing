@@ -101,14 +101,18 @@ export const Navbar = () => {
               <nav className="mt-10">
                 <ul className="flex flex-col">
                   <li>
-                    <Button className="w-full justify-start">
-                      Se connecter
+                    <Button className="w-full justify-start" asChild>
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL}/login`}>
+                        Se connecter
+                      </a>
                     </Button>
                   </li>
 
                   <li>
-                    <Button className="w-full justify-start">
-                      Devenir prestataire
+                    <Button className="w-full justify-start" asChild>
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+                        Devenir prestataire
+                      </a>
                     </Button>
                   </li>
 
@@ -151,8 +155,10 @@ export const Navbar = () => {
                   </li>
 
                   <li className="mt-5">
-                    <Button variant="primary" className="w-full h-14">
-                      🎉 S&apos;inscrire
+                    <Button variant="primary" className="w-full h-14" asChild>
+                      <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+                        🎉 S&apos;inscrire
+                      </a>
                     </Button>
                   </li>
                 </ul>
@@ -163,8 +169,12 @@ export const Navbar = () => {
 
         {/* Desktop */}
         {!isSearchVisible && (
-          <form className="hidden lg:block w-1/3">
+          <form
+            className="hidden lg:block w-1/3"
+            action={`${process.env.NEXT_PUBLIC_APP_URL}/services`}
+          >
             <SearchInput
+              name="search"
               placeholder="Rechercher un service"
               className="py-5"
               buttonProps={{
@@ -177,15 +187,19 @@ export const Navbar = () => {
 
         <div className="hidden lg:flex gap-5">
           <Button asChild>
-            <Link href="#">Devenir prestataire</Link>
+            <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+              Devenir prestataire
+            </a>
           </Button>
 
           <Button variant="secondary" asChild>
-            <Link href="#">Connexion</Link>
+            <a href={`${process.env.NEXT_PUBLIC_APP_URL}/login`}>Connexion</a>
           </Button>
 
           <Button variant="primary" asChild>
-            <Link href="#">Inscription</Link>
+            <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
+              Inscription
+            </a>
           </Button>
         </div>
       </header>
