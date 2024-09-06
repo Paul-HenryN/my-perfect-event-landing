@@ -1,6 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
-import { icons } from "lucide-react";
+import { ArrowRightIcon, icons } from "lucide-react";
 
 interface BenefitsProps {
   icon: string;
@@ -10,49 +11,51 @@ interface BenefitsProps {
 
 const benefitList: BenefitsProps[] = [
   {
-    icon: "Blocks",
-    title: "Build Brand Trust",
+    icon: "Search",
+    title: "Trouvez le bon prestataire",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+      "Parcourez notre sélection de professionnels et trouvez celui qui correspond à vos besoins.",
   },
   {
-    icon: "LineChart",
-    title: "More Leads",
+    icon: "Mail",
+    title: "Envoyez un message !",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, natus consectetur.",
+      "Contactez les prestataires directement sur My perfect Event et obtenez plus d'informations sur leurs offres.",
   },
   {
-    icon: "Wallet",
-    title: "Higher Conversions",
+    icon: "Calendar",
+    title: "Fixez un rendez-vous",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus consectetur. A odio velit cum aliquam",
+      "Une fois que vous avez choisi votre prestataire, il vous sera possible de fixer un rendez-vous qui sera ajouté à votre calendrier.",
   },
   {
     icon: "Sparkle",
-    title: "Test Marketing Ideas",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur dolores.",
+    title: "Et voilà !",
+    description: "Vos convives en prendront plein les yeux.",
   },
 ];
 
 export const BenefitsSection = () => {
   return (
-    <section id="benefits" className="container py-24 sm:py-32">
-      <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
+    <section id="benefits" className="container my-24 sm:my-60">
+      <div className="grid grid-rows-[auto_auto] lg:grid-cols-2 place-items-center lg:gap-10 gap-y-10">
         <div>
-          <h2 className="text-lg text-primary mb-2 tracking-wider">Benefits</h2>
+          <h2 className="text-lg text-primary mb-2 tracking-wider">
+            Comment ça marche ?
+          </h2>
 
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your Shortcut to Success
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 max-w-xs md:max-w-md">
+            Des services de qualité à portée de main.
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non
-            ducimus reprehenderit architecto rerum similique facere odit
-            deleniti necessitatibus quo quae.
+            Explorez notre catalogue et choisissez le service qui vous convient
+            le mieux. Nous avons mis en place des critères de sélection pour
+            vous aider à trouver les meilleurs prestataires pour votre
+            événement.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-4 w-full">
+        <div className="grid lg:grid-cols-2 gap-4 w-full row-span-2">
           {benefitList.map(({ icon, title, description }, index) => (
             <Card
               key={title}
@@ -79,6 +82,12 @@ export const BenefitsSection = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="w-full h-full flex justify-center lg:justify-start">
+          <Button variant="primary" size="xl" className="mx-auto md:mx-0">
+            Explorer les services <ArrowRightIcon className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     </section>

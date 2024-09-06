@@ -95,6 +95,9 @@ module.exports = {
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
         shimmer: "shimmer 8s infinite",
       },
+      backgroundImage: {
+        noise: "url('/images/light_toast.png')",
+      },
     },
   },
   plugins: [animate],

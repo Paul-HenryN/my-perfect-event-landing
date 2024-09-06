@@ -1,6 +1,8 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/components/ui/icon";
-import { icons } from "lucide-react";
+import { ArrowRightIcon, icons } from "lucide-react";
+import Link from "next/link";
 
 interface FeaturesProps {
   icon: string;
@@ -10,59 +12,59 @@ interface FeaturesProps {
 
 const featureList: FeaturesProps[] = [
   {
-    icon: "TabletSmartphone",
-    title: "Mobile Friendly",
+    icon: "MessagesSquare",
+    title: "Des retours d'expérience",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, consectetur.",
+      "Grâce aux avis des anciens clients, vous savez si le prestataire est fiable et répond à vos attentes.",
   },
   {
     icon: "BadgeCheck",
-    title: "Social Proof",
+    title: "Une gestion fluide des échanges",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Natus consectetur, odio ea accusamus aperiam.",
+      "Trouvez tous vos prestataires au même endroit et organisez votre évènement sans stress.",
   },
   {
-    icon: "Goal",
-    title: "Targeted Content",
+    icon: "Clock",
+    title: "Des heures de recherche économisées",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. odio ea accusamus aperiam.",
+      "Plus besoin de fouiller en vain les réseaux sociaux, tapez juste un mot clé dans la barre de recherche.",
   },
   {
-    icon: "PictureInPicture",
-    title: "Strong Visuals",
-    description:
-      "Lorem elit. A odio velit cum aliquam. Natus consectetur dolores, odio ea accusamus aperiam.",
+    icon: "BadgeEuro",
+    title: "Des transactions sécurisées",
+    description: "Payez sur notre plateforme et évitez les mauvaises surprises",
   },
   {
-    icon: "MousePointerClick",
-    title: "Clear CTA",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing. odio ea accusamus consectetur.",
+    icon: "Calendar",
+    title: " Une visibilité sur les disponibilités des prestataires",
+    description: "Trouvez les professionnnels qu'il faut, quand il faut.",
   },
   {
-    icon: "Newspaper",
-    title: "Clear Headline",
+    icon: "BadgeCheck",
+    title: "Des professionnels vérifiés",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur.",
+      "Accédez à un réseau de prestataires sélectionnés avec soin pour garantir la qualité de vos événements.",
   },
 ];
 
 export const FeaturesSection = () => {
   return (
-    <section id="features" className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Features
-      </h2>
+    <section
+      id="features"
+      className="container py-24 sm:py-32 flex flex-col items-center"
+    >
+      <p className="text-lg text-primary text-center mb-2 tracking-wider">
+        Avantages
+      </p>
 
       <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        What Makes Us Different
+        Si vous organisez des événements
       </h2>
 
-      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
-        fugiat, odit similique quasi sint reiciendis quidem iure veritatis optio
-        facere tenetur.
-      </h3>
+      <p className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
+        Profitez de nombreux avantages qui simplifieront votre planning, vos
+        réservations et votre organisation.
+      </p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {featureList.map(({ icon, title, description }) => (
@@ -78,7 +80,7 @@ export const FeaturesSection = () => {
                   />
                 </div>
 
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="text-center">{title}</CardTitle>
               </CardHeader>
 
               <CardContent className="text-muted-foreground text-center">
@@ -88,6 +90,13 @@ export const FeaturesSection = () => {
           </div>
         ))}
       </div>
+
+      <Button variant="primary" size="xl" className="mt-20" asChild>
+        <Link href="#">
+          S&apos;inscrire
+          <ArrowRightIcon className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
     </section>
   );
 };

@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
-import { ThemeProvider } from "@/components/layout/theme-provider";
-const inter = Inter({ subsets: ["latin"] });
+
+const dmSans = DM_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shadcn - Landing template",
-  description: "Landing template from Shadcn",
+  title: "My Perfect Event | Trouvez des professionnels pour vos événements",
+  description:
+    "Trouvez et réservez facilement des professionnels pour vos événements : DJ, traiteur, photographe, et bien plus. Notre plateforme met en relation particuliers et prestataires qualifiés pour des événements réussis. Organisez sans stress et en toute confiance !",
+  openGraph: {
+    title: "Trouvez des professionnels pour vos événements",
+    description:
+      "Organisez vos événements sans stress avec notre marketplace qui vous connecte à des prestataires qualifiés.",
+    url: "https://my-perfect-event.com",
+  },
 };
 
 export default function RootLayout({
@@ -17,8 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning>
-      <body className={cn("min-h-screen bg-background", inter.className)}>
+    <html lang="fr">
+      <body
+        className={cn(
+          "min-h-screen text-foreground bg-noise",
+          dmSans.className
+        )}
+      >
         <Navbar />
 
         {children}

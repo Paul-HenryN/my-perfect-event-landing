@@ -17,7 +17,7 @@ export function SearchInput({
     <div className="relative">
       <Input
         type="search"
-        className={cn("bg-slate-50 py-8 rounded-full px-5", className)}
+        className={cn("bg-slate-50 py-8 rounded-full pl-5 pr-28", className)}
         {...props}
       />
       <Button

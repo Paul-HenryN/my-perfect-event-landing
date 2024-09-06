@@ -45,14 +45,14 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <div className="bg-neutral-50 sticky top-0 z-50 py-5">
+    <div className="bg-neutral-50 sticky top-0 z-50 py-5 drop-shadow-md shadow-primary">
       <header
         className={cn(
           "container mx-auto rounded-2xl flex justify-between items-center"
         )}
       >
         <Link href="/" className="font-bold text-lg flex items-center">
-          <span className="mr-2 text-4xl">🎉</span>
+          <span className="mr-2 text-2xl">🎉</span>
           My Perfect Event
         </Link>
 
@@ -80,7 +80,7 @@ export const Navbar = () => {
                       href="/"
                       className="font-bold text-lg flex items-center"
                     >
-                      <span className="mr-2 text-4xl">🎉</span>
+                      <span className="mr-2 text-2xl">🎉</span>
                       My Perfect Event
                     </Link>
                   </SheetTitle>
@@ -90,6 +90,7 @@ export const Navbar = () => {
               <form>
                 <SearchInput
                   className="py-7"
+                  autoFocus={false}
                   placeholder="Rechercher un service"
                   buttonProps={{
                     className: "",

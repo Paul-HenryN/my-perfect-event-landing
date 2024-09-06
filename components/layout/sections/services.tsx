@@ -1,10 +1,12 @@
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ArrowRightIcon } from "lucide-react";
+import Link from "next/link";
 
 enum ProService {
   YES = 1,
@@ -17,44 +19,48 @@ interface ServiceProps {
 }
 const serviceList: ServiceProps[] = [
   {
-    title: "Custom Domain Integration",
+    title: " Votre Visibilité boostée",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit adipisicing.",
+      "Un référencement de qualité pour vous trouvez grâce à une simple recherche Google",
     pro: 0,
   },
   {
-    title: "Social Media Integrations",
+    title: "Une Gestion fluide des réservations",
     description:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, dicta.",
+      "Vos réservations sont plus organisées grâce à notre calendrier automatisé.",
     pro: 0,
   },
   {
-    title: "Email Marketing Integrations",
-    description: "Lorem dolor sit amet adipisicing.",
+    title: "Des transactions sécurisées",
+    description: "Vos clients payent une partie avant le début du service",
     pro: 0,
   },
   {
-    title: "SEO Optimization",
-    description: "Lorem ipsum dolor sit amet consectetur.",
+    title: "Analyse et suivi des performances",
+    description:
+      "Accédez à des statistiques détaillées sur vos prestations, vos avis et votre chiffre d'affaires.",
     pro: 1,
   },
 ];
 
 export const ServicesSection = () => {
   return (
-    <section id="services" className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Services
-      </h2>
+    <section
+      id="services"
+      className="container py-24 sm:py-32 flex flex-col items-center"
+    >
+      <p className="text-lg text-primary text-center mb-2 tracking-wider">
+        Avantages
+      </p>
 
       <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        Grow Your Business
+        Si vous proposez vos services
       </h2>
       <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        From marketing and sales to operations and strategy, we have the
-        expertise to help you achieve your goals.
+        Boostez votre business en mettant en avant vos compétences
+        professionelles. Simplifiez votre organisation grâce à des outils
+        adaptés.
       </h3>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-4 w-full lg:w-[60%] mx-auto">
         {serviceList.map(({ title, description, pro }) => (
@@ -66,16 +72,16 @@ export const ServicesSection = () => {
               <CardTitle>{title}</CardTitle>
               <CardDescription>{description}</CardDescription>
             </CardHeader>
-            <Badge
-              data-pro={ProService.YES === pro}
-              variant="secondary"
-              className="absolute -top-2 -right-3 data-[pro=false]:hidden"
-            >
-              PRO
-            </Badge>
           </Card>
         ))}
       </div>
+
+      <Button variant="primary" size="xl" className="mt-20" asChild>
+        <Link href="#">
+          Devenir prestataire
+          <ArrowRightIcon className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
     </section>
   );
 };
