@@ -117,6 +117,12 @@ export const Navbar = () => {
                   </li>
 
                   <li>
+                    <Button asChild>
+                      <Link href="/blog">Blog</Link>
+                    </Button>
+                  </li>
+
+                  <li>
                     <Accordion
                       type="single"
                       collapsible
@@ -186,6 +192,10 @@ export const Navbar = () => {
         )}
 
         <div className="hidden lg:flex gap-5">
+          <Button asChild>
+            <Link href="/blog">Blog</Link>
+          </Button>
+
           <Button asChild>
             <a href={`${process.env.NEXT_PUBLIC_APP_URL}/register`}>
               Devenir prestataire

@@ -29,6 +29,14 @@ html {
 		--ring: 281 69% 57%;
         --radius: 0.5rem;
     }
+
+	h1 {
+		@apply text-5xl font-bold mb-5;
+	}
+
+	h2 {
+		@apply text-3xl font-bold mb-3;
+	}
 }
 
 .shadow-light {
@@ -42,5 +50,19 @@ html {
 @layer base {
   * {
     @apply border-border;
+  }
+
+  .article {
+	& h1 {
+		@apply text-3xl md:text-5xl font-bold mb-8 mt-10;
+	}
+
+	& h2 {
+		@apply text-xl md:text-3xl font-bold my-5;
+	}
+
+	& p {
+		@apply my-6;
+	}
   }
 }

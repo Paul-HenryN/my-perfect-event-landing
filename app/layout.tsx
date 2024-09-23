@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
+import { FooterSection } from "@/components/layout/sections/footer";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -36,6 +37,8 @@ export default function RootLayout({
         <Navbar />
 
         {children}
+
+        <FooterSection />
       </body>
     </html>
   );
