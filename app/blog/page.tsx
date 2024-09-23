@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 };
 
-export function PostSnippet({
+function PostSnippet({
   title,
   slug,
   createdAt,
