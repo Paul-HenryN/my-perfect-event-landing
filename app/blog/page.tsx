@@ -7,6 +7,8 @@ import { ArrowRightIcon } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Blog | My Perfect Event",
   description: "Retrouvez ici tous nos bons plans, nos conseils et astuces.",
